@@ -9,7 +9,12 @@ module Admin
     before_action :authenticate_admin
 
     def authenticate_admin
-      # TODO Add authentication logic here.
+      command = AuthenticateUser.call(params[:email], params[:password])
+      if command.success? && command.result[1] == 'admin'
+        render json: {auth_token: command.result[0]}
+      else
+        render json: {error: command.errors}, status: :unauthorized
+      end
     end
 
     # Override this value to specify the number of elements to display at a time
