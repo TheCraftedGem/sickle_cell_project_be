@@ -4,7 +4,7 @@ class ApplicationMailer < ActionMailer::Base
 
   def confirmation_email(user)
     @user = user
-    @confirmation_code = 
+    @confirmation_code = @user.create_confirmation_code
     mail(to: @user.email, subject: 'Confirmation Email for MedApp')
   end
 end

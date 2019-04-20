@@ -17,7 +17,7 @@ class User < ApplicationRecord
   end
 
   def create_confirmation_code
-    self.confirmation_code = SecureRandom.urlsafe_base64 if self.confirmation_code.nil?
+    self.confirmation_code ||= SecureRandom.urlsafe_base64
   end
 
   def activate_user
