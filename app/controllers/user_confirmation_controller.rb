@@ -1,0 +1,2 @@
+class UserConfirmationController < ApplicationController
+end

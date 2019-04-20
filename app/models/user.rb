@@ -14,5 +14,15 @@ class User < ApplicationRecord
       self.status ||= :inactive
     end
   end
+
+  def create_confirmation_code
+    self.confirmation_code = SecureRandom.urlsafe_base64 if self.confirmation_code.nil?
+  end
+
+  def activate_user
+    self.confirmation_code = nil
+    self.status = :active
+    self.confirmed_at = Time.now
+  end
   
 end
