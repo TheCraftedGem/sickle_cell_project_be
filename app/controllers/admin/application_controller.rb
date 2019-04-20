@@ -6,15 +6,13 @@
 # you're free to overwrite the RESTful controller actions.
 module Admin
   class ApplicationController < Administrate::ApplicationController
-    before_action :authenticate_admin
+    before_action :authorize_admin_request
 
-    def authenticate_admin
-      command = AuthenticateUser.call(params[:email], params[:password])
-      if command.success? && command.result[1] == 'admin'
-        render json: {auth_token: command.result[0]}
-      else
-        render json: {error: command.errors}, status: :unauthorized
-      end
+    private
+
+    def authorize_admin_request
+      @current_user = AuthorizeApiRequest.call(request.headers).result
+      render json: {error: 'Not Authorized'}, status: 401 unless @current_user && @current_user.admin?
     end
 
     # Override this value to specify the number of elements to display at a time
