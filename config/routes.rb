@@ -19,6 +19,8 @@ Rails.application.routes.draw do
       get :confirm_email
     end
   end
+  post 'password/forgot', to: 'userconfirmation#forgot'
+  post 'password/reset', to: 'userconfirmation#reset'
 
 
 end

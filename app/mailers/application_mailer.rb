@@ -4,7 +4,13 @@ class ApplicationMailer < ActionMailer::Base
 
   def confirmation_email(user)
     @user = user
-    @confirmation_code = @user.create_confirmation_code
+    @confirmation_code = @user.confirmation_code
     mail(to: @user.email, subject: 'Confirmation Email for MedApp')
+  end
+
+  def password_reset_email(user)
+    @user = user
+    @password_reset_token = @user.reset_password_token
+    mail(to: @user.email, subject: 'Reset Your Password for MedApp')
   end
 end
