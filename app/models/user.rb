@@ -12,6 +12,7 @@ class User < ApplicationRecord
     if self.new_record?
       self.role ||= :default
       self.status ||= :inactive
+      create_confirmation_code
     end
   end
 
