@@ -15,7 +15,5 @@ class UserController < ApplicationController
     else
       render json: {message: "#{@current_user.email}'s password was not changed.", errors: @current_user.errors.full_messages}, status: :unprocessable_entity
     end
-
-
   end
 end
