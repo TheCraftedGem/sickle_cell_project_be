@@ -11,7 +11,7 @@ Rails.application.routes.draw do
   # User controller actions
   # get '/user', to: 'user#show'
   # get '/users', to: 'user#index'
-  # post '/update_user', to: 'user#update'
+  post '/update_user', to: 'user#update'
   # get '/user_delete', to: 'user#destroy'
   # post '/user_create', to: 'user#create'
 
