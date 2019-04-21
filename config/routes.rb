@@ -14,12 +14,12 @@ Rails.application.routes.draw do
   # get '/user_delete', to: 'user#destroy'
   # post '/user_create', to: 'user#create'
   #Confirmation and password reset routes
-  resources :user_confirmation, only: [:confirm_email] do
+  resources :user_confirmation, only: [:confirm_email, :forgot] do
     member do
       get :confirm_email
+      post :forgot
     end
   end
-  post 'password/forgot', to: 'userconfirmation#forgot'
   post 'password/reset', to: 'userconfirmation#reset'
 
 

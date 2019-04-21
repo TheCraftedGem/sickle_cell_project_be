@@ -44,6 +44,7 @@ class User < ApplicationRecord
 
   def downcase_email
     self.email = self.email.downcase
+    save!
   end
 
   def generate_url_safe_token
