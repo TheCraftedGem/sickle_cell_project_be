@@ -1,5 +1,6 @@
 class UserConfirmationController < ApplicationController
   skip_before_action :authenticate_request
+  
   def confirm_email
     user = User.find_by(confirmation_code: params[:id])
     if user
