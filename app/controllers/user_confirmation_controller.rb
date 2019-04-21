@@ -1,4 +1,5 @@
 class UserConfirmationController < ApplicationController
+  skip_before_action :authenticate_request
   def confirm_email
     user = User.find_by(confirmation_code: params[:id])
     if user
@@ -22,6 +23,10 @@ class UserConfirmationController < ApplicationController
     else
       render json: {message: 'Email address not found or user is not active'}, status: :not_found
     end
+  end
+
+  def show
+    user = User.find_by()
   end
 
   def reset
