@@ -1,6 +1,6 @@
-class UserConfirmationController < ApplicationController
+class Api::V1::UserConfirmationController < ApplicationController
   skip_before_action :authenticate_request
-  
+
   def confirm_email
     user = User.find_by(confirmation_code: params[:id])
     if user
@@ -8,6 +8,7 @@ class UserConfirmationController < ApplicationController
       redirect_to 'https://medapp.com/successful_activation'
     else
       redirect_to 'https://medapp.com/unsuccessful_activation'
+    end
   end
 
   def forgot
@@ -36,6 +37,7 @@ class UserConfirmationController < ApplicationController
     end
 
     token = params[:token].to_s
+
     user = User.find_by(reset_password_token: token)
 
     if user && user.active && user.password_token_valid?

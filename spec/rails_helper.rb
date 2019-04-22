@@ -34,7 +34,13 @@ RSpec.configure do |config|
   config.after(:each) do
     DatabaseCleaner.clean
   end
-end
+
+  config.include FactoryBot::Syntax::Methods
+    config.after(:each) do
+    # reset all FactoryBot sequences after each test
+      FactoryBot.reload
+    end
+  end
 
 Shoulda::Matchers.configure do |config|
   config.integrate do |with|
