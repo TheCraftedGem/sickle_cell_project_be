@@ -5,7 +5,7 @@ class User < ApplicationRecord
   enum role: [:default, :admin]
   enum status: [:inactive, :active]
 
-  validates_presence_of :email, :password_digest, :first_name, :last_name
+  validates_presence_of :email, :password_digest, :first_name, :last_name, :role, :status
   validates_uniqueness_of :email 
 
   after_initialize do
