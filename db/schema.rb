@@ -20,6 +20,7 @@ ActiveRecord::Schema.define(version: 2019_04_23_170518) do
     t.datetime "last_visit"
     t.integer "office_id"
     t.integer "patient_id"
+    t.integer "appointment_result"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
