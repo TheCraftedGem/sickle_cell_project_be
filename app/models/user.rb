@@ -1,11 +1,11 @@
 class User < ApplicationRecord
   has_secure_password
-  # before_validation :downcase_email
+  has_many :offices
 
   enum role: [:default, :admin]
   enum status: [:inactive, :active]
 
-  validates_presence_of :email, :password_digest, :first_name, :last_name, :role, :status
+  validates_presence_of :email, :password_digest, :first_name, :last_name, :role, :status, :address, :city, :state, :zip_code
   validates_uniqueness_of :email 
 
   after_initialize do

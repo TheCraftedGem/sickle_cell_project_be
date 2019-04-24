@@ -9,4 +9,10 @@ RSpec.describe Patient, type: :model do
     it {should validate_presence_of(:zip_code)}
     it {should validate_presence_of(:last_visit)}
   end
+
+  describe 'relationships' do
+    it {should have_many(:offices)}
+    it {should have_many(:scans)}
+    it {should have_many(:appointments)}
+  end
 end

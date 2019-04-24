@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_04_23_170518) do
+ActiveRecord::Schema.define(version: 2019_04_24_031509) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -33,11 +33,14 @@ ActiveRecord::Schema.define(version: 2019_04_23_170518) do
     t.integer "zip_code"
     t.integer "phone_number"
     t.string "hours"
-    t.integer "provider_id"
-    t.integer "patient_id"
-    t.integer "appointment_id"
+    t.bigint "patient_id"
+    t.bigint "appointment_id"
+    t.bigint "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["appointment_id"], name: "index_offices_on_appointment_id"
+    t.index ["patient_id"], name: "index_offices_on_patient_id"
+    t.index ["user_id"], name: "index_offices_on_user_id"
   end
 
   create_table "patients", force: :cascade do |t|
@@ -48,10 +51,12 @@ ActiveRecord::Schema.define(version: 2019_04_23_170518) do
     t.integer "zip_code"
     t.datetime "last_visit"
     t.integer "office_id"
-    t.integer "appointment_id"
-    t.integer "scan_id"
+    t.bigint "appointment_id"
+    t.bigint "scan_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["appointment_id"], name: "index_patients_on_appointment_id"
+    t.index ["scan_id"], name: "index_patients_on_scan_id"
   end
 
   create_table "providers", force: :cascade do |t|
@@ -67,6 +72,7 @@ ActiveRecord::Schema.define(version: 2019_04_23_170518) do
 
   create_table "scans", force: :cascade do |t|
     t.string "result"
+    t.integer "patient_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -76,6 +82,11 @@ ActiveRecord::Schema.define(version: 2019_04_23_170518) do
     t.string "last_name"
     t.string "email"
     t.string "password_digest"
+    t.string "address"
+    t.string "city"
+    t.string "state"
+    t.string "zip_code"
+    t.integer "office_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "role"
@@ -87,4 +98,9 @@ ActiveRecord::Schema.define(version: 2019_04_23_170518) do
     t.datetime "reset_password_sent_at"
   end
 
+  add_foreign_key "offices", "appointments"
+  add_foreign_key "offices", "patients"
+  add_foreign_key "offices", "users"
+  add_foreign_key "patients", "appointments"
+  add_foreign_key "patients", "scans"
 end
