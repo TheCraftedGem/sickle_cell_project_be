@@ -11,10 +11,6 @@ class CreatePatients < ActiveRecord::Migration[5.2]
       t.integer :appointment_id
       t.integer :scan_id
       
-      t.references :scan, foreign_key: true
-      t.references :appointment, foreign_key: true
-      t.references :office, foreign_key: true
-      
       t.timestamps
     end
   end
