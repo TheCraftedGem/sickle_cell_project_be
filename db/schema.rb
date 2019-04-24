@@ -18,11 +18,15 @@ ActiveRecord::Schema.define(version: 2019_04_24_031509) do
   create_table "appointments", force: :cascade do |t|
     t.datetime "date"
     t.datetime "last_visit"
-    t.integer "office_id"
-    t.integer "patient_id"
+    t.bigint "office_id"
+    t.bigint "patient_id"
+    t.bigint "user_id"
     t.integer "appointment_result"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["office_id"], name: "index_appointments_on_office_id"
+    t.index ["patient_id"], name: "index_appointments_on_patient_id"
+    t.index ["user_id"], name: "index_appointments_on_user_id"
   end
 
   create_table "offices", force: :cascade do |t|
@@ -33,12 +37,10 @@ ActiveRecord::Schema.define(version: 2019_04_24_031509) do
     t.integer "zip_code"
     t.integer "phone_number"
     t.string "hours"
-    t.bigint "patient_id"
-    t.bigint "appointment_id"
     t.bigint "user_id"
+    t.bigint "patient_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["appointment_id"], name: "index_offices_on_appointment_id"
     t.index ["patient_id"], name: "index_offices_on_patient_id"
     t.index ["user_id"], name: "index_offices_on_user_id"
   end
@@ -51,21 +53,8 @@ ActiveRecord::Schema.define(version: 2019_04_24_031509) do
     t.integer "zip_code"
     t.datetime "last_visit"
     t.integer "office_id"
-    t.bigint "appointment_id"
-    t.bigint "scan_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["appointment_id"], name: "index_patients_on_appointment_id"
-    t.index ["scan_id"], name: "index_patients_on_scan_id"
-  end
-
-  create_table "providers", force: :cascade do |t|
-    t.string "name"
-    t.string "address"
-    t.string "city"
-    t.string "state"
-    t.integer "zip_code"
-    t.integer "office_id"
+    t.integer "appointment_id"
+    t.integer "scan_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -75,6 +64,8 @@ ActiveRecord::Schema.define(version: 2019_04_24_031509) do
     t.integer "patient_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "patients_id"
+    t.index ["patients_id"], name: "index_scans_on_patients_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -98,9 +89,10 @@ ActiveRecord::Schema.define(version: 2019_04_24_031509) do
     t.datetime "reset_password_sent_at"
   end
 
-  add_foreign_key "offices", "appointments"
+  add_foreign_key "appointments", "offices"
+  add_foreign_key "appointments", "patients"
+  add_foreign_key "appointments", "users"
   add_foreign_key "offices", "patients"
   add_foreign_key "offices", "users"
-  add_foreign_key "patients", "appointments"
-  add_foreign_key "patients", "scans"
+  add_foreign_key "scans", "patients", column: "patients_id"
 end

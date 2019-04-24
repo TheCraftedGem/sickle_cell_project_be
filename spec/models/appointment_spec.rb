@@ -8,8 +8,7 @@ RSpec.describe Appointment, type: :model do
   end
 
   describe 'relationships' do
-    it {should have_many(:patients)}
-    it {should have_many(:offices)}
-    it {should have_many(:appointments)}
+    it {should belong_to(:patient)}
+    it {should belong_to(:office)}
   end
 end
