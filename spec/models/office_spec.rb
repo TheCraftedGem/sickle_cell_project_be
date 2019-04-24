@@ -10,4 +10,10 @@ RSpec.describe Office, type: :model do
     it {should validate_presence_of(:phone_number)}
     it {should validate_presence_of(:hours)}
   end
+
+  describe 'relationships' do
+    it {should have_many(:patients)}
+    it {should have_many(:users)}
+    it {should have_many(:appointments)}
+  end
 end
