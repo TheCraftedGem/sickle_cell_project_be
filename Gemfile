@@ -8,6 +8,8 @@ gem 'administrate'
 gem 'simple_command'
 gem 'lograge'
 gem 'csv'
+gem 'htmltoword'
+
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.2.2'
 
