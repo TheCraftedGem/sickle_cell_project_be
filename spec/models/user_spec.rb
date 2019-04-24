@@ -25,5 +25,6 @@ require 'rails_helper'
         expect(@user_1.status).to eq("inactive")
         expect(@user_1.role).to eq("default")
       end
+  
     end
   end

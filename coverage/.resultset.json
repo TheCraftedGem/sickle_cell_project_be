@@ -260,15 +260,25 @@
         1,
         null
       ],
-      "/Users/millstone/Turing/job_search/sickle_cell_project_be/app/mailers/user_mailer.rb": [
+      "/Users/millstone/Turing/job_search/sickle_cell_project_be/app/mailers/report_mailer.rb": [
         1,
+        1,
+        null,
+        null,
+        null,
+        1,
+        null,
+        null,
         null
       ],
       "/Users/millstone/Turing/job_search/sickle_cell_project_be/app/mailers/application_mailer.rb": [
         1,
         1,
         1,
-        null,
+        null
+      ],
+      "/Users/millstone/Turing/job_search/sickle_cell_project_be/app/mailers/user_mailer.rb": [
+        1,
         1,
         0,
         0,
@@ -373,6 +383,6 @@
         null
       ]
     },
-    "timestamp": 1556129533
+    "timestamp": 1556141851
   }
 }
