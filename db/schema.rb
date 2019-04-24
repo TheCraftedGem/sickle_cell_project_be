@@ -77,11 +77,10 @@ ActiveRecord::Schema.define(version: 2019_04_24_031509) do
     t.string "city"
     t.string "state"
     t.string "zip_code"
-    t.integer "office_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "role"
-    t.integer "status"
+    t.integer "role", default: 0
+    t.integer "status", default: 0
     t.string "confirmation_code"
     t.datetime "confirmed_at"
     t.datetime "confirmation_sent_at"
