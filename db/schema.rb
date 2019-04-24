@@ -21,7 +21,7 @@ ActiveRecord::Schema.define(version: 2019_04_24_031509) do
     t.bigint "office_id"
     t.bigint "patient_id"
     t.bigint "user_id"
-    t.integer "appointment_result"
+    t.integer "appointment_result", default: 0
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["office_id"], name: "index_appointments_on_office_id"
@@ -77,6 +77,7 @@ ActiveRecord::Schema.define(version: 2019_04_24_031509) do
     t.string "city"
     t.string "state"
     t.string "zip_code"
+    t.integer "office_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "role", default: 0

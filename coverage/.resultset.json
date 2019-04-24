@@ -260,6 +260,64 @@
         1,
         null
       ],
+      "/Users/millstone/Turing/job_search/sickle_cell_project_be/app/mailers/user_mailer.rb": [
+        1,
+        null
+      ],
+      "/Users/millstone/Turing/job_search/sickle_cell_project_be/app/mailers/application_mailer.rb": [
+        1,
+        1,
+        1,
+        null,
+        1,
+        0,
+        0,
+        null,
+        null,
+        1,
+        0,
+        0,
+        null,
+        null
+      ],
+      "/Users/millstone/Turing/job_search/sickle_cell_project_be/app/models/appointment.rb": [
+        1,
+        1,
+        1,
+        null,
+        1,
+        1,
+        null
+      ],
+      "/Users/millstone/Turing/job_search/sickle_cell_project_be/app/models/application_record.rb": [
+        1,
+        1,
+        null
+      ],
+      "/Users/millstone/Turing/job_search/sickle_cell_project_be/app/models/office.rb": [
+        1,
+        1,
+        1,
+        1,
+        null,
+        1,
+        null
+      ],
+      "/Users/millstone/Turing/job_search/sickle_cell_project_be/app/models/patient.rb": [
+        1,
+        1,
+        1,
+        1,
+        null,
+        1,
+        null
+      ],
+      "/Users/millstone/Turing/job_search/sickle_cell_project_be/app/models/scan.rb": [
+        1,
+        1,
+        1,
+        null
+      ],
       "/Users/millstone/Turing/job_search/sickle_cell_project_be/app/models/user.rb": [
         1,
         1,
@@ -313,22 +371,8 @@
         12,
         null,
         null
-      ],
-      "/Users/millstone/Turing/job_search/sickle_cell_project_be/app/models/application_record.rb": [
-        1,
-        1,
-        null
-      ],
-      "/Users/millstone/Turing/job_search/sickle_cell_project_be/app/models/office.rb": [
-        1,
-        1,
-        1,
-        1,
-        null,
-        1,
-        null
       ]
     },
-    "timestamp": 1556128921
+    "timestamp": 1556129533
   }
 }
