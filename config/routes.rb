@@ -16,13 +16,21 @@ Rails.application.routes.draw do
   # post '/user_create', to: 'user#create'
 
   #Confirmation and password reset routes
+
+  namespace :api do
+    namespace :v1 do
+    
+    post '/sessions', to: 'sessions#create'
+
+    end
+  end 
+  
   resources :user_confirmation, only: [:confirm_email] do
     member do
       get :confirm_email
     end
   end
+
   post 'password/forgot', to: 'userconfirmation#forgot'
   post 'password/reset', to: 'userconfirmation#reset'
-
-
 end

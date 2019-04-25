@@ -1,9 +1,10 @@
-class UserController < ApplicationController
+class Api::V1::UserController < ApplicationController
   def create
     user.new(user_params)
     if user.save
       UserMailer.confirmation_email(user)
     else
+      
     end
   end
 
@@ -15,7 +16,5 @@ class UserController < ApplicationController
     else
       render json: {message: "#{@current_user.email}'s password was not changed.", errors: @current_user.errors.full_messages}, status: :unprocessable_entity
     end
-
-
   end
 end
