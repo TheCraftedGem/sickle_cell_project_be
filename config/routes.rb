@@ -9,6 +9,12 @@ Rails.application.routes.draw do
   # end
 
   # User controller actions
+
+  namespace :api do
+    namespace :v1 do
+      post '/authenticate', to: 'authentication#authenticate'
+    end
+  end 
   # get '/user', to: 'user#show'
   # get '/users', to: 'user#index'
   post '/update_user', to: 'user#update'
@@ -17,13 +23,6 @@ Rails.application.routes.draw do
 
   #Confirmation and password reset routes
 
-  namespace :api do
-    namespace :v1 do
-    
-    post '/sessions', to: 'sessions#create'
-
-    end
-  end 
   
   resources :user_confirmation, only: [:confirm_email] do
     member do
