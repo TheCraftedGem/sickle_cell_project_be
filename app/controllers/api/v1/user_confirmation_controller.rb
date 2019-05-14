@@ -44,7 +44,7 @@ class Api::V1::UserConfirmationController < ApplicationController
       if user.reset_password(params[:password])
         render json: {message: 'Password reset'}, status: :ok
       else
-        render json: {message: "#{user.errors.full_messages}"} status: :unprocessable_entity
+        render json: {message: "#{user.errors.full_messages}"}, status: :unprocessable_entity
       end
     else
       render json: {message: 'Link is not valid or expired, try generating a new link'}, status: :not_found
