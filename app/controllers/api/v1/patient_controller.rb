@@ -36,6 +36,6 @@ class Api::V1::PatientController < ApplicationController
   def destroy
     patient = Patient.find_by_email(params[:email])
     if patient.destory!
-      
+    end
   end
 end
