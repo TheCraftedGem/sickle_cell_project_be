@@ -36,6 +36,10 @@ class Api::V1::PatientController < ApplicationController
   def destroy
     patient = Patient.find_by_email(params[:email])
     if patient.destory!
-      
+    end
+  end
+
+  def private
+    require(patient).permit(:first_name, :last_name, :street_address, :city, :state, :zip_code, :last_visit, :office_id, :appointment_id, :scan_id)
   end
 end
