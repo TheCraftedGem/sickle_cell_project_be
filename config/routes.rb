@@ -14,16 +14,16 @@ Rails.application.routes.draw do
     namespace :v1 do
       post '/authenticate', to: 'authentication#authenticate'
     end
-  end 
+  end
+
   # get '/user', to: 'user#show'
   # get '/users', to: 'user#index'
   post '/update_user', to: 'user#update'
   # get '/user_delete', to: 'user#destroy'
-  # post '/user_create', to: 'user#create'
+  post '/user_create', to: 'user#create'
 
   #Confirmation and password reset routes
 
-  
   resources :user_confirmation, only: [:confirm_email] do
     member do
       get :confirm_email

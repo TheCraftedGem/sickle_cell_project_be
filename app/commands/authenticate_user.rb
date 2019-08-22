@@ -7,11 +7,11 @@ class AuthenticateUser
   end
 
   def call
-    [JsonWebToken.encode(user_id: user.id), user.role] if user && user.active?
+    [JsonWebToken.encode(user_id: user.id), user.role] if (user && user.active? && user.confirmation_code.nil?)
   end
 
   private
-  
+
   attr_accessor :email, :password
 
   def user

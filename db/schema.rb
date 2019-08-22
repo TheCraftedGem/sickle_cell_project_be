@@ -35,7 +35,7 @@ ActiveRecord::Schema.define(version: 2019_05_14_013407) do
     t.string "city"
     t.string "state"
     t.integer "zip_code"
-    t.integer "phone_number"
+    t.bigint "phone_number"
     t.string "hours"
     t.bigint "user_id"
     t.bigint "patient_id"
@@ -61,11 +61,11 @@ ActiveRecord::Schema.define(version: 2019_05_14_013407) do
 
   create_table "scans", force: :cascade do |t|
     t.string "result"
-    t.integer "office_id"
+    t.bigint "patient_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.bigint "patients_id"
-    t.index ["patients_id"], name: "index_scans_on_patients_id"
+    t.integer "office_id"
+    t.index ["patient_id"], name: "index_scans_on_patient_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -94,5 +94,5 @@ ActiveRecord::Schema.define(version: 2019_05_14_013407) do
   add_foreign_key "appointments", "users"
   add_foreign_key "offices", "patients"
   add_foreign_key "offices", "users"
-  add_foreign_key "scans", "patients", column: "patients_id"
+  add_foreign_key "scans", "patients"
 end

@@ -6,7 +6,7 @@ class CreateOffices < ActiveRecord::Migration[5.2]
       t.string :city
       t.string :state
       t.integer :zip_code
-      t.integer :phone_number
+      t.bigint :phone_number
       t.string :hours
   
       t.references :user, foreign_key: true
