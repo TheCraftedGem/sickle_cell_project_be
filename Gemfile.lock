@@ -99,6 +99,13 @@ GEM
       ruby-progressbar (~> 1.4)
     globalid (0.4.2)
       activesupport (>= 4.2.0)
+    google-authenticator-rails (2.0.0)
+      actionpack
+      activerecord
+      google-qr
+      rails
+      rotp (= 3.3.0)
+    google-qr (0.2.2)
     hashdiff (1.0.0)
     htmltoword (1.1.0)
       actionpack
@@ -194,6 +201,7 @@ GEM
     regexp_parser (1.6.0)
     request_store (1.4.1)
       rack (>= 1.4)
+    rotp (3.3.0)
     rspec-core (3.8.2)
       rspec-support (~> 3.8.0)
     rspec-expectations (3.8.4)
@@ -277,6 +285,7 @@ DEPENDENCIES
   faker
   fast_jsonapi
   fuubar
+  google-authenticator-rails
   htmltoword
   jwt
   launchy
