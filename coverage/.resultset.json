@@ -349,7 +349,7 @@
       ],
       "/Users/millstone/Turing/job_search/sickle_cell_project_be/app/models/user.rb": [
         1,
-        1,
+        null,
         1,
         1,
         null,
@@ -403,6 +403,6 @@
         null
       ]
     },
-    "timestamp": 1566778736
+    "timestamp": 1566783056
   }
 }

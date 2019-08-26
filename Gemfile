@@ -22,7 +22,6 @@ gem 'bootsnap', '>= 1.1.0', require: false
 gem 'google-authenticator-rails'
 
 group :development, :test do
-  gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
   gem 'rspec-rails'
   gem 'shoulda-matchers'
   gem 'fuubar'

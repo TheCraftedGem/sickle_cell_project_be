@@ -62,7 +62,6 @@ GEM
     bootsnap (1.4.4)
       msgpack (~> 1.0)
     builder (3.2.3)
-    byebug (11.0.1)
     capybara (3.28.0)
       addressable
       mini_mime (>= 0.1.3)
@@ -277,7 +276,6 @@ DEPENDENCIES
   administrate
   bcrypt (~> 3.1.7)
   bootsnap (>= 1.1.0)
-  byebug
   capybara
   csv
   database_cleaner
