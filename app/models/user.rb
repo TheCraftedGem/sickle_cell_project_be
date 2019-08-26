@@ -1,4 +1,5 @@
 class User < ApplicationRecord
+  acts_as_google_authenticated
   has_secure_password
   has_many :offices
 
