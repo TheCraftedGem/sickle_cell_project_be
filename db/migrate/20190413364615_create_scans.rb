@@ -1,7 +1,7 @@
 class CreateScans < ActiveRecord::Migration[5.2]
   def change
     create_table :scans do |t|
-      t.string :result
+      t.integer :result, default: 0
       t.text :note
       t.integer :patient_id
       t.datetime :created_at

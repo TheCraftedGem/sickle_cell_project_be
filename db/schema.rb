@@ -34,8 +34,7 @@ ActiveRecord::Schema.define(version: 2019_05_14_013407) do
     t.string "city"
     t.string "state"
     t.integer "zip_code"
-    t.bigint "phone_number"
-    t.string "hours"
+    t.string "phone_number"
     t.bigint "user_id"
     t.bigint "patient_id"
     t.datetime "created_at", null: false
@@ -61,7 +60,7 @@ ActiveRecord::Schema.define(version: 2019_05_14_013407) do
   end
 
   create_table "scans", force: :cascade do |t|
-    t.string "result"
+    t.integer "result", default: 0
     t.text "note"
     t.bigint "patient_id"
     t.datetime "created_at", null: false

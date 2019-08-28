@@ -1,8 +1,7 @@
 FactoryBot.define do
   factory :appointment do
-    date { "2019-04-23 11:00:15" }
-    last_visit { "2019-04-23 11:00:15" }
-    appointment_result { 1 }
+    date { rand(10.years).seconds.ago }
+    appointment_result { rand(5) }
     association :user, factory: :user
     association :patient, factory: :patient
     association :office, factory: :office

@@ -39,8 +39,8 @@ RSpec.describe Api::V1::PatientsController, type: :api do
 
   context "When the patient is successfully updated" do
     before do
-      patient = Patient.find(1)
-      patch "/api/v1/patient_update?id=1", patient: {phone_number: 2253342323}
+      @patient = Patient.find(1)
+      patch "/api/v1/patient_update?id=1", patient: {phone_number: '2253342323'}
     end
 
     it 'responds with a 200 status' do
@@ -52,7 +52,7 @@ RSpec.describe Api::V1::PatientsController, type: :api do
     end
 
     it 'changed the correct information' do
-      expect(patient.phone_number).not_to eq(Patient.find(1).phone_number)
+      expect(@patient.phone_number).not_to eq(Patient.find(1).phone_number)
     end
   end
 end
