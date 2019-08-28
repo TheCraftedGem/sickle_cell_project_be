@@ -5,9 +5,9 @@ class Api::V1::UserConfirmationsController < ApplicationController
     user = User.find_by(confirmation_code: params[:id])
     if user.present? && user.confirmation_code_valid?
       user.activate_user
-      redirect_to 'https://medapp.com/successful_activation'
+      render json: { message: "User was successfully activated."}, status: :ok
     else
-      redirect_to 'https://medapp.com/unsuccessful_activation'
+      render json: { message: "User was not successfully activated." }, status: :unprocessable_entity
     end
   end
 
