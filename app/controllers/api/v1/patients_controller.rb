@@ -18,7 +18,7 @@ class Api::V1::PatientsController < ApplicationController
     patient = Patient.find_by_id(params[:id])
     if !patient.nil?
       # Insert logic using fast_json to render the serialized user
-      render json: {}, status: :ok
+      render json: { message: "#{patient.first_name} was found." }, status: :ok
     else
       render json: { message: "Patient was not found."}, status: :not_found
     end
@@ -39,7 +39,9 @@ class Api::V1::PatientsController < ApplicationController
     end
   end
 
-  def private
-    require(patient).permit(:first_name, :last_name, :street_address, :city, :state, :zip_code, :last_visit, :office_id, :appointment_id, :scan_id)
+  private
+
+  def patient_params
+    params.require(:patient).permit(:first_name, :last_name, :phone_number, :street_address, :city, :state, :zip_code, :last_visit, :office_id, :appointment_id, :scan_id)
   end
 end

@@ -17,7 +17,6 @@ ActiveRecord::Schema.define(version: 2019_05_14_013407) do
 
   create_table "appointments", force: :cascade do |t|
     t.datetime "date"
-    t.datetime "last_visit"
     t.bigint "office_id"
     t.bigint "patient_id"
     t.bigint "user_id"
@@ -46,11 +45,13 @@ ActiveRecord::Schema.define(version: 2019_05_14_013407) do
   end
 
   create_table "patients", force: :cascade do |t|
-    t.string "name"
+    t.string "first_name"
+    t.string "last_name"
     t.string "street_address"
     t.string "city"
     t.string "state"
     t.integer "zip_code"
+    t.string "phone_number"
     t.datetime "last_visit"
     t.integer "office_id"
     t.integer "appointment_id"
@@ -61,6 +62,7 @@ ActiveRecord::Schema.define(version: 2019_05_14_013407) do
 
   create_table "scans", force: :cascade do |t|
     t.string "result"
+    t.text "note"
     t.bigint "patient_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -73,10 +75,7 @@ ActiveRecord::Schema.define(version: 2019_05_14_013407) do
     t.string "last_name"
     t.string "email"
     t.string "password_digest"
-    t.string "street_address"
-    t.string "city"
-    t.string "state"
-    t.string "zip_code"
+    t.string "phone_number"
     t.integer "office_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

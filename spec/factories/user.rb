@@ -13,8 +13,5 @@ FactoryBot.define do
     confirmation_code { nil }
     confirmed_at { rand(10.years).seconds.ago }
     office_id { 1 }
-    # after(:build) do |user, evaluator|
-    #   create_list(:office, 5, users: [user])
-    # end
   end
 end
