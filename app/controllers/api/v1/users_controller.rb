@@ -2,12 +2,12 @@ class Api::V1::UsersController < ApplicationController
   skip_before_action :authenticate_request, only: [:create]
 
   def create
-    user.new(user_params)
-    if user.save
-      UserMailer.confirmation_email(user)
-      render json: {message: "The user #{user_params[:email]} was created, they will need to confirm their email."}
+    @user = User.new(user_params)
+    if @user.save!
+      UserMailer.confirmation_email(@user).deliver
+      render json: {message: "The user #{user_params[:email]} was created, they will need to confirm their email."}, status: :ok
     else
-      render json: {message: "The user #{user_params[:email]} was not created."}
+      render json: {message: "The user #{user_params[:email]} was not created."}, status: :unprocessable_entitiy
     end
   end
 
@@ -30,12 +30,16 @@ class Api::V1::UsersController < ApplicationController
       render json: {message: "#{@current_user.email}'s password has been successfully changed."}, status: :ok if @current_user.reset_password(params[:password])
     elsif params[:password] && params[:old_password] && @curent_user.password != params[:old_password]
       render json: {message: "#{@current_user.email}'s password was not changed.", errors: @current_user.errors.full_messages}, status: :unprocessable_entity
+    elsif params[:password].nil? && user.update!(user_params)
+      render json: { message: "#{user.first_name} was updated successfully." }, status: 200
+    else
+      render json: { message: "There was an error updating the user." }, status: 422
     end
   end
 
   private
 
   def user_params
-    require(user).permit(:email, :first_name, :last_name, :password, :address, :city, :state, :zip_code, :office_id, :role, :status, :old_password)
+    params.require(:user).permit(:email, :first_name, :last_name, :password, :phone_number, :office_id, :role, :status, :old_password)
   end
 end

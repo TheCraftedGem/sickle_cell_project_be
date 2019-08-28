@@ -55,4 +55,25 @@ RSpec.describe Api::V1::PatientsController, type: :api do
       expect(@patient.phone_number).not_to eq(Patient.find(1).phone_number)
     end
   end
+
+  context 'When the patient is unsuccessfully updated' do
+    before do
+      patch "/api/v1/patient_update?id=15", patient: {phone_number: '23232323232'}
+    end
+
+    it 'responds with a 422 status' do
+      expect(last_response.status).to eq 422
+    end
+
+    it 'responds with a message that the patient was not updated successfully' do
+      expect(json[last_response.body["message"]]).to eq('Patient was not found or not updated successfully')
+    end
+  end
+
+  # Once we have the logic to return all of the patients in a serialized format, we can use this one.
+  context 'When the patients are successfully returned' do
+    before do
+
+    end
+  end
 end

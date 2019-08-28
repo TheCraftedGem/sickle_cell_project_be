@@ -8,6 +8,6 @@
   <body>
     <h1>Hello <%= @user.first_name %>. Welcome to MedApp.</h1>
     <p>Please click on the url below to confirm your registration.</p>
-    <p><%= confirm_email_user_confirmation_url(@user.confirmation_token)%></p>
+    <p><%= confirm_email_user_confirmation_url(@user.confirmation_code)%></p>
   </body>
 </html>

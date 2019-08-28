@@ -26,10 +26,10 @@ class Api::V1::PatientsController < ApplicationController
 
   def update
     patient = Patient.find_by_id(params[:id])
-    if patient.update!(patient_params)
+    if !patient.nil? && patient.update!(patient_params)
       render json: { message: "#{patient.first_name} was updated successfully."}, status: :ok
     else
-      render json: { message: "Patient was not found or not updated successfully", errors: patient.errors.full_messages}, status: :unprocessable_entity
+      render json: { message: "Patient was not found or not updated successfully" }, status: :unprocessable_entity
     end
   end
 
