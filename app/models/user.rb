@@ -23,6 +23,10 @@ class User < ApplicationRecord
     save!
   end
 
+  def confirmation_code_valid?
+    (self.confirmation_sent_at + 30.days) > Time.now.utc
+  end
+
   def generate_password_token
     self.reset_password_token = generate_url_safe_token
     self.reset_password_sent_at = Time.now.utc
@@ -47,6 +51,6 @@ class User < ApplicationRecord
   end
 
   def generate_url_safe_token
-    SecureRandom.urlsafe_base64
+    SecureRandom.urlsafe_base64.to_s
   end
 end
