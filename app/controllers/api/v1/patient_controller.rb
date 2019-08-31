@@ -2,7 +2,7 @@ class Api::V1::PatientController < ApplicationController
   def index
     patients = Patient.all
     # Insert logic using fast_json to return all serialized patients
-    return json: {}, status: :ok
+    return json: PatientSerializer.new(patients), status: :ok
   end
 
   def create
@@ -17,8 +17,7 @@ class Api::V1::PatientController < ApplicationController
   def show
     patient = Patient.find_by_email(params[:email])
     if !patient.nil?
-      # Insert logic using fast_json to return the serialized user
-      return json: {}, status: :ok
+      return json: PatientSerializer.new(patient), status: :ok
     else
       return json: { message: "Patient was not found.", errors: patient.errors.full_messages}, status: :not_found
     end

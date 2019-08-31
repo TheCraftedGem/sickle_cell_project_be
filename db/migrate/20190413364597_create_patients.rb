@@ -10,6 +10,7 @@ class CreatePatients < ActiveRecord::Migration[5.2]
       t.integer :office_id
       t.integer :appointment_id
       t.integer :scan_id
+      t.string :date_of_birth
       
       t.timestamps
     end
