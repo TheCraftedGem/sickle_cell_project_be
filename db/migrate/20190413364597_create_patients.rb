@@ -13,6 +13,7 @@ class CreatePatients < ActiveRecord::Migration[5.2]
       t.integer :appointment_id
       t.integer :scan_id
       t.datetime :last_visit
+      t.date :date_of_birth
 
       t.timestamps
     end

@@ -18,7 +18,7 @@ class Api::V1::UsersController < ApplicationController
   def index
     # Might not need an index either, as this should be managed by the admin panel. Do we need to be able to list providers?  
   end
-  
+
   def destroy
     # This depends on whether or not we need the providers to be managed on site.
   end
