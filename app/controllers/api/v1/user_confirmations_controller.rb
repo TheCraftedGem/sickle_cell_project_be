@@ -1,4 +1,4 @@
-class Api::V1::UserConfirmationController < ApplicationController
+class Api::V1::UserConfirmationsController < ApplicationController
   skip_before_action :authenticate_request
 
   def confirm_email
