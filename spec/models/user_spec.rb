@@ -21,7 +21,11 @@ require 'rails_helper'
     describe 'default user creation' do
       it "should create user with default status/role" do
         @user_1 = User.create(email: "user_1@email.com", first_name: "user_1", last_name: "first", password: "user_1", street_address: "123 Fake St", city: "Denver", state: "CO", zip_code: 80202)
+<<<<<<< HEAD
+binding.pry
+=======
 
+>>>>>>> d62ec7f1361e3ece41b410748e1435c7ae6714db
         expect(@user_1.status).to eq("inactive")
         expect(@user_1.role).to eq("default")
       end
