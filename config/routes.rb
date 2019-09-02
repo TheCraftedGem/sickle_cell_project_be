@@ -27,16 +27,18 @@ Rails.application.routes.draw do
 
 
       get '/patient', to: 'patients#show'
+
+      resources :user_confirmations, only: [:confirm_email] do
+        member do
+          get :confirm_email
+        end
+      end
     end
   end
 
   #Confirmation and password reset routes
 
-  resources :user_confirmation, only: [:confirm_email] do
-    member do
-      get :confirm_email
-    end
-  end
+
 
   post 'password/forgot', to: 'userconfirmations#forgot'
   post 'password/reset', to: 'userconfirmations#reset'

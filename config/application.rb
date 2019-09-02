@@ -42,7 +42,10 @@ module SickleCellProjectBe
     # Middleware like session, flash, cookies can be added back manually.
     # Skip views, helpers and assets when generating a new resource.
     config.api_only = false
-    config.action_mailer.default_url_options = { host: 'localhost' }
+    config.action_mailer.default_url_options = { host: 'localhost:3000' }
+    config.action_mailer.perform_deliveries = true
+    config.action_mailer.delivery_method = :sendmail
+    config.action_mailer.raise_delivery_errors = true
     config.generators do |g|
       g.assets false
       g.helper false
