@@ -61,6 +61,7 @@ GEM
     arel (9.0.0)
     autoprefixer-rails (9.6.1)
       execjs
+    base32 (0.3.2)
     bcrypt (3.1.13)
     bootsnap (1.4.4)
       msgpack (~> 1.0)
@@ -271,6 +272,7 @@ PLATFORMS
 DEPENDENCIES
   active_model_otp
   administrate
+  base32 (~> 0.3.2)
   bcrypt (~> 3.1.7)
   bootsnap (>= 1.1.0)
   capybara
