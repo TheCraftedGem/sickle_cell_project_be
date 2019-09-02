@@ -1,8 +1,9 @@
-class Api::V1::UserConfirmationsController < ApplicationController
+class UserConfirmationsController < ApplicationController
   skip_before_action :authenticate_request
 
   def confirm_email
     user = User.find_by(confirmation_code: params[:id])
+    user.update(confirmation_sent_at: Time.now.utc)
     if user.present? && user.confirmation_code_valid?
       user.confirm_user
       render json: { message: "User was successfully confirmed."}, status: :ok
