@@ -18,4 +18,3 @@ Appointment.create!(date: DateTime.new(2019, 8, 15, 14), last_visit: DateTime.ne
 User.find(1).update(confirmation_code: nil)
 User.find(1).update(confirmed_at: Time.now.utc)
 User.find(1).update(confirmation_sent_at: Time.now.utc)
-User.find_each { |user| user.update_attribute(:otp_secret_key, User.otp_random_secret) }
