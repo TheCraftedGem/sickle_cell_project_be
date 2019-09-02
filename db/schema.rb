@@ -10,14 +10,13 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_05_14_013407) do
+ActiveRecord::Schema.define(version: 2019_09_02_193423) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "appointments", force: :cascade do |t|
     t.datetime "date"
-    t.datetime "last_visit"
     t.bigint "office_id"
     t.bigint "patient_id"
     t.bigint "user_id"
@@ -35,8 +34,7 @@ ActiveRecord::Schema.define(version: 2019_05_14_013407) do
     t.string "city"
     t.string "state"
     t.integer "zip_code"
-    t.bigint "phone_number"
-    t.string "hours"
+    t.string "phone_number"
     t.bigint "user_id"
     t.bigint "patient_id"
     t.datetime "created_at", null: false
@@ -46,22 +44,22 @@ ActiveRecord::Schema.define(version: 2019_05_14_013407) do
   end
 
   create_table "patients", force: :cascade do |t|
-    t.string "name"
-    t.string "street_address"
-    t.string "city"
-    t.string "state"
+    t.string "first_name"
+    t.string "last_name"
     t.integer "zip_code"
+    t.string "phone_number"
     t.datetime "last_visit"
     t.integer "office_id"
     t.integer "appointment_id"
     t.integer "scan_id"
-    t.string "date_of_birth"
+    t.date "date_of_birth"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
   create_table "scans", force: :cascade do |t|
-    t.string "result"
+    t.integer "result", default: 0
+    t.text "note"
     t.bigint "patient_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -74,10 +72,7 @@ ActiveRecord::Schema.define(version: 2019_05_14_013407) do
     t.string "last_name"
     t.string "email"
     t.string "password_digest"
-    t.string "street_address"
-    t.string "city"
-    t.string "state"
-    t.string "zip_code"
+    t.string "phone_number"
     t.string "otp_secret_key"
     t.integer "office_id"
     t.datetime "created_at", null: false

@@ -8,7 +8,6 @@ RSpec.describe Office, type: :model do
     it {should validate_presence_of(:state)}
     it {should validate_presence_of(:zip_code)}
     it {should validate_presence_of(:phone_number)}
-    it {should validate_presence_of(:hours)}
   end
 
   describe 'relationships' do

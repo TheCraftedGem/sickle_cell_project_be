@@ -3,13 +3,16 @@
 # SimpleCov.start do
 #   add_filter "/spec"
 # end
+# Dir[Rails.root.join("spec/support/**/*.rb")].sort.each {|f| require f}
 require 'spec_helper'
 ENV['RAILS_ENV'] ||= 'test'
 require File.expand_path('../../config/environment', __FILE__)
+# Dir[File.join(__dir__, '../spec/helpers', '*.rb')].each { |file| require file }
+# require_relative '../../spec/helpers/rails_helper.rb'
+# require_relative '../../spec/helpers/spec_helper.rb'
+require 'rspec/rails'
 # Prevent database truncation if the environment is production
 abort("The Rails environment is running in production mode!") if Rails.env.production?
-require 'rspec/rails'
-Dir[Rails.root.join("spec/support/**/*.rb")].sort.each {|f| require f}
 
 begin
   ActiveRecord::Migration.maintain_test_schema!

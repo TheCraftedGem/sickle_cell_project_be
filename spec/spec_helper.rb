@@ -14,7 +14,8 @@
 #
 # See http://rubydoc.info/gems/rspec-core/RSpec/Core/Configuration
 require 'rails_helper'
-require 'rspec-rails'
+# require 'rspec/rails'
+Dir[Rails.root.join("spec/support/**/*.rb")].each {|f| require f}
 
 RSpec.configure do |config|
   # rspec-expectations config goes here. You can use an alternate
@@ -49,6 +50,7 @@ RSpec.configure do |config|
 
   config.include ApiHelper, type: :api
   config.include Requests::JsonHelpers, type: :api
+  
 # The settings below are suggested to provide a good initial experience
 # with RSpec, but feel free to customize to your heart's content.
 =begin

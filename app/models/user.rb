@@ -3,7 +3,7 @@ class User < ApplicationRecord
   extend ActiveModel::Callbacks
   include ActiveModel::Validations
   include ActiveModel::OneTimePassword
-  
+
   define_model_callbacks :create
   has_one_time_password
   has_secure_password
@@ -13,8 +13,8 @@ class User < ApplicationRecord
   enum role: [:default, :admin]
   enum status: [:inactive, :active]
 
-  validates_presence_of :email, :password_digest, :first_name, :last_name, :role, :status, :street_address, :city, :state, :zip_code, :status
-  validates_uniqueness_of :email 
+  validates_presence_of :email, :password_digest, :first_name, :last_name, :role, :status, :phone_number
+  validates_uniqueness_of :email
 
   after_initialize do
     if self.new_record?
@@ -24,14 +24,18 @@ class User < ApplicationRecord
     end
   end
 
-  def activate_user
+  def confirm_user
     self.confirmation_code = nil
     # MFA Logic Might Go Here In An If, After Email Confirmed 
     # Sends otp_code via text/email code to user that must be returned
     # if self.authenticate_otp(params[:otp_code], drift: 60) == true
-    self.status = :active
+    # self.status = :active
     self.confirmed_at = Time.now.utc
     save!
+  end
+
+  def confirmation_code_valid?
+    (self.confirmation_sent_at + 30.days) > Time.now.utc
   end
 
   def generate_password_token
@@ -49,7 +53,7 @@ class User < ApplicationRecord
     self.password = password
     save!
   end
-  
+
   private
 
   def downcase_email
@@ -58,6 +62,6 @@ class User < ApplicationRecord
   end
 
   def generate_url_safe_token
-    SecureRandom.urlsafe_base64
+    SecureRandom.urlsafe_base64.to_s
   end
 end

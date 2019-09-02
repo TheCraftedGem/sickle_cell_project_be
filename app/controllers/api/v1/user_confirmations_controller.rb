@@ -3,15 +3,11 @@ class Api::V1::UserConfirmationsController < ApplicationController
 
   def confirm_email
     user = User.find_by(confirmation_code: params[:id])
-
-    if user
-      user.activate_user
-
-      user.save
-
-      redirect_to 'https://medapp.com/successful_activation'
+    if user.present? && user.confirmation_code_valid?
+      user.confirm_user
+      render json: { message: "User was successfully confirmed."}, status: :ok
     else
-      redirect_to 'https://medapp.com/unsuccessful_activation'
+      render json: { message: "User was not successfully confirmed." }, status: :unprocessable_entity
     end
   end
 
@@ -29,10 +25,6 @@ class Api::V1::UserConfirmationsController < ApplicationController
     else
       render json: {message: 'Email address not found or user is not active'}, status: :not_found
     end
-  end
-
-  def show
-    user = User.find_by()
   end
 
   def reset
