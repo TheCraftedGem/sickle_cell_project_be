@@ -1,6 +1,6 @@
 class ApplicationController < ActionController::API
   before_action :authenticate_request
-  before_filter :check_mfa
+  before_action :check_mfa
 
   attr_reader :current_user
 

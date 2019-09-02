@@ -5,7 +5,7 @@ class UserMfaSessionController < ApplicationController
   end
 
   def create
-    user = current_user # grab your currently logged in user
+    user = @current_user # grab your currently logged in user
     if user.google_authentic?(params[:mfa_code])
       UserMfaSession.create(user)
       redirect_to root_path
