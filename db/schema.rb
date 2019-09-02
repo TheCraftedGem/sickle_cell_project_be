@@ -79,6 +79,7 @@ ActiveRecord::Schema.define(version: 2019_05_14_013407) do
     t.string "state"
     t.string "zip_code"
     t.string "google_secret"
+    t.string "salt"
     t.integer "office_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
