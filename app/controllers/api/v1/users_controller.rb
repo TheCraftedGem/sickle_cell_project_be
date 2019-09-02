@@ -2,9 +2,9 @@ class Api::V1::UsersController < ApplicationController
   skip_before_action :authenticate_request, only: [:create]
 
   def create
-    @user = User.new(user_params) if valid_password?
-    if @user.save!
-      UserMailer.confirmation_email(@user).deliver_now
+    user = User.new(user_params) if valid_password?
+    if user.save!
+      UserMailer.confirmation_email(user).deliver_now
       render json: {message: "The user #{user_params[:email]} was created, they will need to confirm their email."}
     else
       render json: {message: "The user #{user_params[:email]} was not created."}, status: :unprocessable_entitiy

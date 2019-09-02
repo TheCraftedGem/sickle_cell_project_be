@@ -4,10 +4,10 @@ class Api::V1::UserConfirmationsController < ApplicationController
   def confirm_email
     user = User.find_by(confirmation_code: params[:id])
     if user.present? && user.confirmation_code_valid?
-      user.activate_user
-      render json: { message: "User was successfully activated."}, status: :ok
+      user.confirm_user
+      render json: { message: "User was successfully confirmed."}, status: :ok
     else
-      render json: { message: "User was not successfully activated." }, status: :unprocessable_entity
+      render json: { message: "User was not successfully confirmed." }, status: :unprocessable_entity
     end
   end
 
@@ -25,10 +25,6 @@ class Api::V1::UserConfirmationsController < ApplicationController
     else
       render json: {message: 'Email address not found or user is not active'}, status: :not_found
     end
-  end
-
-  def show
-    user = User.find_by()
   end
 
   def reset

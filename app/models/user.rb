@@ -3,7 +3,7 @@ class User < ApplicationRecord
   extend ActiveModel::Callbacks
   include ActiveModel::Validations
   include ActiveModel::OneTimePassword
-  
+
   define_model_callbacks :create
   has_one_time_password
   has_secure_password
@@ -24,12 +24,12 @@ class User < ApplicationRecord
     end
   end
 
-  def activate_user
+  def confirm_user
     self.confirmation_code = nil
     # MFA Logic Might Go Here In An If, After Email Confirmed 
     # Sends otp_code via text/email code to user that must be returned
     # if self.authenticate_otp(params[:otp_code], drift: 60) == true
-    self.status = :active
+    # self.status = :active
     self.confirmed_at = Time.now.utc
     save!
   end
@@ -53,7 +53,7 @@ class User < ApplicationRecord
     self.password = password
     save!
   end
-  
+
   private
 
   def downcase_email
