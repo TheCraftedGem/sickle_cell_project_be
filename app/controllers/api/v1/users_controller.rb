@@ -2,10 +2,9 @@ class Api::V1::UsersController < ApplicationController
   skip_before_action :authenticate_request, only: [:create]
 
   def create
-    @user = User.new(user_params) if valid_password?
+    @user = User.create(user_params) if valid_password?
+    binding.pry 
     if valid_password? && @user.save
-      @user.set_google_secret
-      @user.save
       UserMailer.confirmation_email(@user).deliver_now
       render json: {message: "The user #{user_params[:email]} was created, they will need to confirm their email."}
     else
@@ -20,7 +19,7 @@ class Api::V1::UsersController < ApplicationController
   def index
     # Might not need an index either, as this should be managed by the admin panel. Do we need to be able to list providers?  
   end
-  
+
   def destroy
     # This depends on whether or not we need the providers to be managed on site.
   end

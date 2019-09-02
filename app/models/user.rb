@@ -1,6 +1,13 @@
 class User < ApplicationRecord
-  acts_as_google_authenticated :lookup_token => :google_secret
+  # acts_as_google_authenticated :lookup_token => :google_secret
+  extend ActiveModel::Callbacks
+  include ActiveModel::Validations
+  include ActiveModel::OneTimePassword
+  
+  define_model_callbacks :create
+  has_one_time_password
   has_secure_password
+
   has_many :offices
 
   enum role: [:default, :admin]
@@ -19,6 +26,9 @@ class User < ApplicationRecord
 
   def activate_user
     self.confirmation_code = nil
+    # MFA Logic Might Go Here In An If, After Email Confirmed 
+    # Sends otp_code via text/email code to user that must be returned
+    # if self.authenticate_otp(params[:otp_code]) == true
     self.status = :active
     self.confirmed_at = Time.now.utc
     save!

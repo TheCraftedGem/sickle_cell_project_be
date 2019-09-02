@@ -9,8 +9,7 @@ class CreateUsers < ActiveRecord::Migration[5.2]
       t.string :city
       t.string :state
       t.string :zip_code
-      t.string :google_secret
-      t.string :salt
+      t.string :otp_secret_key
       t.integer :office_id
 
       t.timestamps
