@@ -13,4 +13,13 @@ Office.create!(name: 'Test1 Office', street_address: 'Test1 Street', city: 'Denv
 Scan.create!(result: rand(1..3), note: Faker::Hipster.paragraph(sentence_count: 4), patient_id: Patient.find(1).id)
 
 # Appointment seeds:
+<<<<<<< HEAD
 Appointment.create!(date: DateTime.new(2019, 8, 15, 14), office_id: Office.find(1).id, patient_id: Patient.find(1).id, user_id: User.find(1).id, appointment_result: rand(1..6))
+=======
+Appointment.create!(date: DateTime.new(2019, 8, 15, 14), last_visit: DateTime.new(2019, 8, 12, 12), office_id: Office.find(1).id, patient_id: Patient.find(1).id, user_id: User.find(1).id, appointment_result: Scan.find(1).id)
+
+User.find(1).update(confirmation_code: nil)
+User.find(1).update(confirmed_at: Time.now.utc)
+User.find(1).update(confirmation_sent_at: Time.now.utc)
+User.find_each { |user| user.update_attribute(:otp_secret_key, User.otp_random_secret) }
+>>>>>>> 6494ce7cfa25afa0f2eca3bd65bb5779f3661eb9
