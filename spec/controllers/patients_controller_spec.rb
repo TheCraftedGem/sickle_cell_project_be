@@ -32,8 +32,8 @@ RSpec.describe Api::V1::PatientsController, type: :api do
       expect(last_response.status).to eq 200
     end
 
-    it 'responds with a message that the patient was found' do
-      expect(json[last_response.body["message"]]).to eq("#{Patient.find(1).first_name} was found.")
+    it 'responds with a the patient information' do
+      expect(json[last_response.body["data"]]["attributes"]["zip_code"]).to eq(Patient.find(1).zip_code)
     end
   end
 

@@ -8,32 +8,32 @@ class Api::V1::PatientsController < ApplicationController
   def create
     patient = Patient.new(patient_params)
     if patient.save!
-      render json: { message: "#{patient.email} was created successfully."}, status: :ok
+      render json: { message: "#{patient.first_name} was created successfully."}, status: :ok
     else
-      render json: { message: "#{patient.email} was not created."}, status: :unprocessable_entity
+      render json: { message: "#{patient.first_name} was not created."}, status: :unprocessable_entity
     end
   end
 
   def show
-    @patient = Patient.find_by_email(params[:email])
-    if !@patient.nil?
-      render json: PatientSerializer.new(@patient)
+    patient = Patient.find_by_id(params[:id])
+    if !patient.nil?
+      render json: PatientSerializer.new(patient)
     else
       render json: { message: "Patient was not found."}, status: :not_found
     end
   end
 
   def update
-    @patient = Patient.find_by_email(params[:email])
-    if @patient.update!(patient_params)
-      render json: { message: "#{patient.email} was updated successfully."}, status: :ok
+    patient = Patient.find_by_id(params[:id])
+    if patient && patient.update!(patient_params)
+      render json: { message: "#{patient.first_name} was updated successfully."}, status: :ok
     else
       render json: { message: "Patient was not found or not updated successfully"}, status: :unprocessable_entity
     end
   end
 
   def destroy
-    patient = Patient.find_by_email(params[:email])
+    patient = Patient.find_by_id(params[:id])
     if patient.destory!
     end
   end
@@ -41,6 +41,6 @@ class Api::V1::PatientsController < ApplicationController
   private
 
   def patient_params
-    require(patient).permit(:first_name, :last_name, :zip_code, :last_visit, :office_id, :appointment_id, :scan_id, :date_of_birth)
+    params.require(:patient).permit(:first_name, :last_name, :zip_code, :last_visit, :phone_number, :office_id, :appointment_id, :scan_id, :date_of_birth)
   end
 end
