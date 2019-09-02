@@ -1,4 +1,4 @@
-class UserMfaSessionController < ApplicationController
+class Api::V1::UserMfaSessionController < ApplicationController
 
   def new
     # load your view

@@ -9,6 +9,7 @@ gem 'simple_command'
 gem 'lograge'
 gem 'csv'
 gem 'htmltoword'
+gem 'active_model_otp'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.2.2'
@@ -20,6 +21,7 @@ gem 'jwt'
 gem 'bcrypt', '~> 3.1.7'
 gem 'bootsnap', '>= 1.1.0', require: false
 gem 'google-authenticator-rails'
+gem 'base32', '~> 0.3.2'
 
 group :development, :test do
   gem 'rspec-rails'

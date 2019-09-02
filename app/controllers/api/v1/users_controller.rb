@@ -2,9 +2,9 @@ class Api::V1::UsersController < ApplicationController
   skip_before_action :authenticate_request, only: [:create]
 
   def create
-    user.new(user_params)
-    if user.save
-      UserMailer.confirmation_email(user)
+    @user = User.create(user_params) if valid_password?
+    if valid_password? && @user.save
+      UserMailer.confirmation_email(@user).deliver_now
       render json: {message: "The user #{user_params[:email]} was created, they will need to confirm their email."}
     else
       render json: {message: "The user #{user_params[:email]} was not created."}
@@ -18,7 +18,7 @@ class Api::V1::UsersController < ApplicationController
   def index
     # Might not need an index either, as this should be managed by the admin panel. Do we need to be able to list providers?  
   end
-  
+
   def destroy
     # This depends on whether or not we need the providers to be managed on site.
   end
@@ -36,6 +36,10 @@ class Api::V1::UsersController < ApplicationController
   private
 
   def user_params
-    require(user).permit(:email, :first_name, :last_name, :password, :address, :city, :state, :zip_code, :office_id, :role, :status, :old_password)
+    params.permit(:email, :first_name, :last_name, :password, :street_address, :city, :state, :zip_code, :office_id, :role, :status, :old_password, :password_confirmation)
+  end
+
+  def valid_password?
+    params[:password] == params[:password_confirmation]
   end
 end
