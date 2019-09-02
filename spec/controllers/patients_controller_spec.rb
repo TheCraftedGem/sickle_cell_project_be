@@ -5,7 +5,7 @@ RSpec.describe Api::V1::PatientsController, type: :api do
   before(:each) do
     create(:appointment)
     token = JsonWebToken.encode({user_id: User.first.id})
-    header "ACCESS_TOKEN", "Bearer #{token}"
+    header "AUTHORIZATION", "Bearer #{token}"
   end
 
   context "When the patient doesn't exist" do

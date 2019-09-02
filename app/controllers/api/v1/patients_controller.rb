@@ -19,7 +19,7 @@ class Api::V1::PatientsController < ApplicationController
     if !@patient.nil?
       render json: PatientSerializer.new(@patient)
     else
-      render json: { message: "Patient was not found.", errors: @patient.errors.full_messages}, status: :not_found
+      render json: { message: "Patient was not found."}, status: :not_found
     end
   end
 
@@ -28,7 +28,7 @@ class Api::V1::PatientsController < ApplicationController
     if @patient.update!(patient_params)
       render json: { message: "#{patient.email} was updated successfully."}, status: :ok
     else
-      render json: { message: "Patient was not found or not updated successfully", errors: @patient.errors.full_messages}, status: :unprocessable_entity
+      render json: { message: "Patient was not found or not updated successfully"}, status: :unprocessable_entity
     end
   end
 
@@ -41,6 +41,6 @@ class Api::V1::PatientsController < ApplicationController
   private
 
   def patient_params
-    require(patient).permit(:first_name, :last_name, :street_address, :city, :state, :zip_code, :last_visit, :office_id, :appointment_id, :scan_id)
+    require(patient).permit(:first_name, :last_name, :zip_code, :last_visit, :office_id, :appointment_id, :scan_id, :date_of_birth)
   end
 end

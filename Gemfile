@@ -20,7 +20,6 @@ gem 'rack-cors', require: 'rack/cors'
 gem 'jwt'
 gem 'bcrypt', '~> 3.1.7'
 gem 'bootsnap', '>= 1.1.0', require: false
-gem 'google-authenticator-rails'
 gem 'base32', '~> 0.3.2'
 
 group :development, :test do

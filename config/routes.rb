@@ -21,20 +21,15 @@ Rails.application.routes.draw do
       post '/authenticate', to: 'authentication#authenticate'
       get '/patients', to: 'patients#index'
       get '/patient', to: 'patients#show'
-<<<<<<< HEAD
       patch '/patient_update', to: 'patients#update'
     end
   end
-=======
->>>>>>> 6494ce7cfa25afa0f2eca3bd65bb5779f3661eb9
 
-      post "/multi_auth", to: 'user_mfa_session#create'
+  post "/multi_auth", to: 'user_mfa_session#create'
 
-      resources :user_confirmations, only: [:confirm_email] do
-        member do
-          get :confirm_email
-        end
-      end
+  resources :user_confirmations, only: [:confirm_email] do
+    member do
+      get :confirm_email
     end
   end
 
