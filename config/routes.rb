@@ -12,18 +12,14 @@ Rails.application.routes.draw do
 
   namespace :api do
     namespace :v1 do
-      post '/authenticate', to: 'authentication#authenticate'
-      get "/patients", to: "patient#index"
-    end
-  end
-
-  namespace :api do
-    namespace :v1 do
       # get '/user', to: 'user#show'
       # get '/users', to: 'user#index'
       post '/update_user', to: 'users#update'
       # get '/user_delete', to: 'user#destroy'
       post '/user_create', to: 'users#create'
+
+      post '/authenticate', to: 'authentication#authenticate'
+      get "/patients", to: "patients#index"
 
 
       get '/patient', to: 'patients#show'
@@ -37,9 +33,6 @@ Rails.application.routes.draw do
   end
 
   #Confirmation and password reset routes
-
-
-
   post 'password/forgot', to: 'userconfirmations#forgot'
   post 'password/reset', to: 'userconfirmations#reset'
 end

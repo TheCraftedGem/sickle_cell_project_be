@@ -12,7 +12,6 @@ class ApplicationController < ActionController::API
   end
 
   def check_mfa
-    binding.pry
     if !(user_mfa_session = UserMfaSession.find) && (user_mfa_session ? user_mfa_session.record == @current_user : !user_mfa_session)
       redirect_to new_user_mfa_session_path
     end
