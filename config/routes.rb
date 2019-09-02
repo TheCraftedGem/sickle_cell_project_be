@@ -2,7 +2,7 @@ Rails.application.routes.draw do
   namespace :admin do
     resources :users
 
-    root to: "users#index"
+    root to: 'users#index'
   end
   # namespace :admin do
   #   resources user, only: %i(index show create update destroy)
@@ -19,10 +19,10 @@ Rails.application.routes.draw do
       post '/user_create', to: 'users#create'
 
       post '/authenticate', to: 'authentication#authenticate'
-      get "/patients", to: "patients#index"
-
-
+      get '/patients', to: 'patients#index'
       get '/patient', to: 'patients#show'
+
+      post "/multi_auth", to: 'user_mfa_session#create'
 
       resources :user_confirmations, only: [:confirm_email] do
         member do

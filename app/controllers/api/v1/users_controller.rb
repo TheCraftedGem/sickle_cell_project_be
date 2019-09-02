@@ -4,8 +4,8 @@ class Api::V1::UsersController < ApplicationController
   def create
     @user = User.new(user_params) if valid_password?
     if valid_password? && @user.save
-      # @user.set_google_secret
-      # @user.save
+      @user.set_google_secret
+      @user.save
       UserMailer.confirmation_email(@user).deliver_now
       render json: {message: "The user #{user_params[:email]} was created, they will need to confirm their email."}
     else
