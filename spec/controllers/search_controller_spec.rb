@@ -11,5 +11,13 @@ RSpec.describe Api::V1::SearchController, type: :api do
     before do
       get "/api/v1/search?query=#{Patient.find(1).first_name}"
     end
+
+    it 'responds with a 200 status' do
+      expect(last_response.status).to eq 200
+    end
+
+    it 'responds with the patients recorded information' do
+      expect(json[0]["data"]["attributes"]["first_name"]).to eq(Patient.find(1).first_name)
+    end
   end
 end
