@@ -22,6 +22,8 @@ Rails.application.routes.draw do
       get '/patients', to: 'patients#index'
       get '/patient', to: 'patients#show'
       patch '/patient_update', to: 'patients#update'
+
+      get '/search', to: 'search#search'
     end
   end
 
