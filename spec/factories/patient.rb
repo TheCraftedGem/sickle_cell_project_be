@@ -8,6 +8,8 @@ FactoryBot.define do
     date_of_birth { rand(10.years).seconds.ago }
     office_id { 1 }
     appointment_id { 1 }
-    scan_id { 1 }
+    after :create do |patient|
+      create_list :scan, 3, patient: patient
+    end
   end
 end

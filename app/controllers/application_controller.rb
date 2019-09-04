@@ -16,4 +16,8 @@ class ApplicationController < ActionController::API
       redirect_to new_user_mfa_session_path
     end
   end
+
+  def record_not_found
+    render status: :not_found
+  end
 end
