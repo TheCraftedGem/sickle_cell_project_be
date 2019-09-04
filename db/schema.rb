@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_09_02_193423) do
+ActiveRecord::Schema.define(version: 2019_09_04_010336) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -55,6 +55,18 @@ ActiveRecord::Schema.define(version: 2019_09_02_193423) do
     t.date "date_of_birth"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["first_name"], name: "index_patients_on_first_name"
+    t.index ["last_name"], name: "index_patients_on_last_name"
+    t.index ["zip_code"], name: "index_patients_on_zip_code"
+  end
+
+  create_table "pg_search_documents", force: :cascade do |t|
+    t.text "content"
+    t.string "searchable_type"
+    t.bigint "searchable_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["searchable_type", "searchable_id"], name: "index_pg_search_documents_on_searchable_type_and_searchable_id"
   end
 
   create_table "scans", force: :cascade do |t|
