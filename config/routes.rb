@@ -31,6 +31,9 @@ Rails.application.routes.draw do
 
       #Scan routes
       get '/scan', to: 'scans#show'
+      post '/scan_create', to: 'scans#create'
+      patch '/scan_update', to: 'scans#update'
+      delete '/scan_delete', to: 'scans#destroy'
     end
   end
 

@@ -29,11 +29,11 @@ class Api::V1::UsersController < ApplicationController
     if params[:password] && params[:old_password] && @current_user.password == params[:old_password]
       render json: {message: "#{@current_user.email}'s password has been successfully changed."}, status: :ok if @current_user.reset_password(params[:password])
     elsif params[:password] && params[:old_password] && @curent_user.password != params[:old_password]
-      render json: {message: "#{@current_user.email}'s password was not changed.", errors: @current_user.errors.full_messages}, status: :unprocessable_entity
+      render json: {message: "#{@current_user.email}'s password was not changed." }, status: :unprocessable_entity
     elsif params[:password].nil? && user.update!(user_params)
-      render json: { message: "#{user.first_name} was updated successfully." }, status: 200
+      render json: { message: "#{user.first_name} was updated successfully." }, status: :ok
     else
-      render json: { message: "There was an error updating the user." }, status: 422
+      render json: { message: "There was an error updating the user." }, status: :unprocessable_entitiy
     end
   end
 

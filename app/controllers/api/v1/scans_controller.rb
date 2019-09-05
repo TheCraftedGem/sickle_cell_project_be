@@ -11,8 +11,8 @@ class Api::V1::ScansController < ApplicationController
   end
 
   def show
-    scan = Scan.where(patient_id: params[:patient_id]).or(Scan.where(id: params[:id]))
-    if !scan.empty?
+    scan = find_scan
+    if scan.present?
       render json: ScanSerializer.new(scan)
     else
       render status: :not_found
@@ -20,21 +20,43 @@ class Api::V1::ScansController < ApplicationController
   end
 
   def index
-    scans = Scan.find.where(patient_id: params[:patient_id])
-    render json: ScanSerializer.new(scans)
+    scans = Scan.where(patient_id: params[:patient_id])
+    if !scan.empty?
+      render json: ScanSerializer.new(scans)
+    else
+      render status: :not_found
+    end
   end
 
   def update
-    
+    scan = find_scan
+    if scan.update!(scan_params)
+      render status: :ok
+    else
+      render status: :not_found
+    end
   end
-  
-  def destroy
 
+  def destroy
+    scan = find_scan
+    if scan.destroy!
+      render status: :ok
+    else
+      render status: :not_found
+    end
   end
 
   private
 
-  def scans_params
-    params.require(:scans).permit(:result, :note, :patient_id, :office_id)
+  def scan_params
+    params.require(:scan).permit(:result, :note, :patient_id, :office_id)
+  end
+
+  def find_scan
+    if params[:patient_id]
+      return Scan.where(patient_id: params[:patient_id]).last
+    else
+      return Scan.where(id: params[:id]).last
+    end
   end
 end
