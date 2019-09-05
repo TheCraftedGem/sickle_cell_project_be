@@ -22,11 +22,11 @@ RSpec.describe Api::V1::ScansController, type: :api do
       get "/api/v1/scan?id=#{Scan.find(1).id}"
     end
 
-    it 'it returns an ok status' do
+    it 'returns an ok status' do
       expect(last_response.status).to eq 200
     end
 
-    it 'it returns the correct scan' do
+    it 'returns the correct scan' do
       expect(json['data']['attributes']['result']).to eq(Scan.find(1).result)
     end
   end
@@ -36,7 +36,7 @@ RSpec.describe Api::V1::ScansController, type: :api do
       post "/api/v1/scan_create", scan: { result: "moderate", note: "New note", patient_id: 1, office_id: 1 }
     end
 
-    it 'it returns an ok status' do
+    it 'returns an ok status' do
       expect(last_response.status).to eq 200
     end
   end
@@ -46,11 +46,11 @@ RSpec.describe Api::V1::ScansController, type: :api do
       patch "/api/v1/scan_update?patient_id=1", scan: { result: "severe"}
     end
 
-    it 'it returns an ok status' do
+    it 'returns an ok status' do
       expect(last_response.status).to eq 200
     end
 
-    it 'it modifies the right scan with new information' do
+    it 'modifies the right scan with new information' do
       expect(Scan.find(3).result).to eq("severe")
     end
   end
@@ -60,12 +60,26 @@ RSpec.describe Api::V1::ScansController, type: :api do
       delete '/api/v1/scan_delete?id=2'
     end
 
-    it 'it returns an ok status' do
+    it 'returns an ok status' do
       expect(last_response.status).to eq 200
     end
 
-    it 'it deletes the correct scan' do
+    it 'deletes the correct scan' do
       expect{Scan.find(2)}.to raise_error(ActiveRecord::RecordNotFound)
+    end
+  end
+
+  context 'It can return a list of scans and' do
+    before do
+      get '/api/v1/scans?patient_id=1'
+    end
+
+    it 'returns an ok status' do
+      expect(last_response.status).to eq 200
+    end
+
+    it 'returns a list of scans' do
+      expect(json['data'].length).to eq 3
     end
   end
 end

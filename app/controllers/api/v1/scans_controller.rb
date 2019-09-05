@@ -21,7 +21,7 @@ class Api::V1::ScansController < ApplicationController
 
   def index
     scans = Scan.where(patient_id: params[:patient_id])
-    if !scan.empty?
+    if !scans.empty?
       render json: ScanSerializer.new(scans)
     else
       render status: :not_found
