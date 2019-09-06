@@ -9,11 +9,12 @@
 #   enable_starttls_auto: true
 # }
 #if you are using the API key
-ActionMailer::Base.smtp_settings = {
-  domain:         'providerminder.com',
-  address:        "smtp.sendgrid.net",
-  port:            465,
-  authentication: :plain,
-  user_name:      'apikey',
-  password:       ENV['SENDGRID_API_KEY']
+config.action_mailer.smtp_settings = {
+  :user_name => ENV['SENDGRID_USERNAME'],
+  :password => ENV['SENDGRID_PASSWORD'],
+  :domain => 'providerminder.com',
+  :address => 'smtp.sendgrid.net',
+  :port => 587,
+  :authentication => :plain,
+  :enable_starttls_auto => true
 }

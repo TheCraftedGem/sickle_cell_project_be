@@ -5,7 +5,7 @@ class Api::V1::UsersController < ApplicationController
     user = User.new(user_params) if valid_password?
     if user.save!
       UserMailer.confirmation_email(user).deliver_now
-      render json: {message: "The user #{user_params[:email]} was created, they will need to confirm their email."}
+      render json: {message: "The user #{user_params[:email]} was created, they will need to confirm their email."}, status: :ok
     else
       render json: {message: "The user #{user_params[:email]} was not created."}, status: :unprocessable_entitiy
     end
