@@ -12,6 +12,7 @@ Rails.application.routes.draw do
 
   namespace :api do
     namespace :v1 do
+      #User routes
       # get '/user', to: 'user#show'
       # get '/users', to: 'user#index'
       post '/update_user', to: 'users#update'
@@ -19,11 +20,21 @@ Rails.application.routes.draw do
       post '/user_create', to: 'users#create'
 
       post '/authenticate', to: 'authentication#authenticate'
+
+      #Patient routes
       get '/patients', to: 'patients#index'
       get '/patient', to: 'patients#show'
       patch '/patient_update', to: 'patients#update'
 
+      #Search routes
       get '/search', to: 'search#search'
+
+      #Scan routes
+      get '/scan', to: 'scans#show'
+      get '/scans', to: 'scans#index'
+      post '/scan_create', to: 'scans#create'
+      patch '/scan_update', to: 'scans#update'
+      delete '/scan_delete', to: 'scans#destroy'
     end
   end
 

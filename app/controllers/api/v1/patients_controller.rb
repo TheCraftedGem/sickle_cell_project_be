@@ -1,8 +1,8 @@
 class Api::V1::PatientsController < ApplicationController
   def index
-    @patients = Patient.all
+    patients = Patient.all
     # Insert logic using fast_json to return all serialized patients
-    render json: PatientSerializer.new(@patients)
+    render json: PatientSerializer.new(patients)
   end
 
   def create
