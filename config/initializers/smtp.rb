@@ -10,10 +10,10 @@
 # }
 #if you are using the API key
 ActionMailer::Base.smtp_settings = {
-  domain: 'providerminder.com',
+  domain:         'providerminder.com',
   address:        "smtp.sendgrid.net",
-  port:            587,
+  port:            465,
   authentication: :plain,
   user_name:      'apikey',
-  password:       ENV.['SENDGRID_API_KEY']
+  password:       ENV['SENDGRID_API_KEY']
 }

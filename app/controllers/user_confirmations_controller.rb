@@ -3,8 +3,8 @@ class UserConfirmationsController < ApplicationController
 
   def confirm_email
     user = User.find_by(confirmation_code: params[:id])
-    user.update(confirmation_sent_at: Time.now.utc)
     if user.present? && user.confirmation_code_valid?
+      user.update(confirmation_sent_at: Time.now.utc)
       user.confirm_user
       render json: { message: "User was successfully confirmed."}, status: :ok
     else
