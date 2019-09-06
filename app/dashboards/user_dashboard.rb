@@ -12,7 +12,11 @@ class UserDashboard < Administrate::BaseDashboard
     first_name: Field::String,
     last_name: Field::String,
     email: Field::String,
-    password_digest: Field::String,
+    phone_number: Field::String,
+    role: Field::String,
+    status: Field::String,
+    office_id: Field::Number,
+    password_digest: Field::Password,
     created_at: Field::DateTime,
     updated_at: Field::DateTime,
   }.freeze
@@ -23,10 +27,10 @@ class UserDashboard < Administrate::BaseDashboard
   # By default, it's limited to four items to reduce clutter on index pages.
   # Feel free to add, remove, or rearrange items.
   COLLECTION_ATTRIBUTES = [
-    :id,
     :first_name,
     :last_name,
     :email,
+    :office_id
   ].freeze
 
   # SHOW_PAGE_ATTRIBUTES
@@ -36,7 +40,6 @@ class UserDashboard < Administrate::BaseDashboard
     :first_name,
     :last_name,
     :email,
-    :password_digest,
     :created_at,
     :updated_at,
   ].freeze
@@ -48,7 +51,8 @@ class UserDashboard < Administrate::BaseDashboard
     :first_name,
     :last_name,
     :email,
-    :password_digest,
+    :password,
+    :password_confirmation
   ].freeze
 
   # Overwrite this method to customize how users are displayed

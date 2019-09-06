@@ -7,7 +7,7 @@ class AuthenticateUser
   end
 
   def call
-    [JsonWebToken.encode(user_id: user.id), user.role] if (user && user.active? && user.confirmation_code.nil?)
+    [JsonWebToken.encode(user_id: user.id), user] if (user && user.active? && user.confirmation_code.nil?)
   end
 
   private
