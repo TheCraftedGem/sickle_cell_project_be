@@ -24,7 +24,7 @@
   </head>
 
   <body>
-    <h1>Hello <%= @user.first_name %>. Welcome to MedApp.</h1>
+    <h1>Hello <%= @user.first_name %>. Welcome to Provider Minder.</h1>
     <p>Please click on the url below to confirm your registration.</p>
     <p><%= link_to "Activate your account.", confirm_email_user_confirmation_url(@user.confirmation_code)%></p>
     </br>
