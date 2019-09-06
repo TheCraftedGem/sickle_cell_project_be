@@ -3,6 +3,24 @@
 <html>
   <head>
     <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+    <style>
+      table {
+        border-width: 0;
+        border-style: none;
+        border-color: #0000ff;
+        border-collapse: collapse;
+      }
+
+      td {
+        border-left: solid 10px #000;
+        padding: 0; 
+        margin: 0; 
+        width: 0px; 
+        height: 10px; 
+      }
+      td.black { border-color: #000; }
+      td.white { border-color: #fff; }
+    </style>
   </head>
 
   <body>
@@ -10,6 +28,7 @@
     <p>Please click on the url below to confirm your registration.</p>
     <p><%= link_to "Activate your account.", confirm_email_user_confirmation_url(@user.confirmation_code)%></p>
     </br>
-    <p>Your QR Code Address: <%=@user.provisioning_uri%></p>
+    <p>Below is the QR code you should use to establish your one time password code in the Google Authenticator app, either on your phone or in your browser. </p>
+    <%= raw @qr.as_html %>
   </body>
 </html>
