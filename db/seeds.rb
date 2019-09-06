@@ -10,7 +10,7 @@ Patient.create!(first_name: 'Test3', last_name: 'Test_last3', zip_code: 00113, l
 Office.create!(name: 'Test1 Office', street_address: 'Test1 Street', city: 'Denver', state: 'CO', zip_code: 00114, phone_number: '2253231999', user_id: User.find(1).id, )
 
 # Scan seeds:
-Scan.create!(result: rand(0..2), note: Faker::Hipster.paragraph(sentence_count: 4), patient_id: Patient.find(1).id)
+Scan.create!(result: rand(0..2), note: "Test note test note", patient_id: Patient.find(1).id)
 
 # Appointment seeds:
 Appointment.create!(date: DateTime.new(2019, 8, 15, 14), office_id: Office.find(1).id, patient_id: Patient.find(1).id, user_id: User.find(1).id, appointment_result: rand(0..5))
