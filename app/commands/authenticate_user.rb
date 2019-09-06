@@ -1,10 +1,10 @@
 class AuthenticateUser
   prepend SimpleCommand
 
-  def initialize(email, password, otp_code)
+  def initialize(email, password)
     @email = email
     @password = password
-    @otp_code = otp_code
+    # @otp_code = otp_code
   end
 
   def call
